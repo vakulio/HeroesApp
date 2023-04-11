@@ -32,4 +32,4 @@
   </section>
 
 
-  <app-auth-modal></app-auth-modal>
+  <app-auth-modal *ngIf="!(auth.isAuth$ | async)"></app-auth-modal>
