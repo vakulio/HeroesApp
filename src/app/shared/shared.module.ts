@@ -24,7 +24,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     ModalComponent,
     TabsContainerComponent,
     TabComponent,
-    InputComponent
+    InputComponent,
+    AlertComponent
   ],
 })
 export class SharedModule { }

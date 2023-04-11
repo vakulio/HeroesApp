@@ -25,7 +25,10 @@ export class RegisterComponent {
     Validators.required,
     Validators.pattern(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm)
   ])
-
+  showAlert = false
+  alertMsg = 'Please wait! Your account is being created.'
+  alertColor = 'blue'
+  inSubmission = false
 
   registerForm = new FormGroup({
     name: this.name,
@@ -34,5 +37,9 @@ export class RegisterComponent {
     confirmPassword: this.confirmPassword,
   });
 
-
+  async register() {
+    this.showAlert = true
+    this.alertMsg = 'Please wait! Your account is being created.'
+    this.alertColor = 'blue'
+  }
 }
