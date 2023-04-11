@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { IUser } from 'src/app/models/user.models';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -7,7 +9,9 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
-  constructor() {}
+  constructor(
+    private auth: AuthService
+  ) {}
 
   name = new FormControl('', [
     Validators.required,
@@ -41,5 +45,18 @@ export class RegisterComponent {
     this.showAlert = true
     this.alertMsg = 'Please wait! Your account is being created.'
     this.alertColor = 'blue'
+    this.inSubmission = true
+
+    try {
+      this.auth.createUser(this.registerForm.value as IUser)
+
+    } catch (error) {
+      this.alertMsg = 'Some error. Please try again'
+      this.alertColor = 'red'
+      this.inSubmission = false
+      return
+    }
+    this.alertMsg = 'Success! Accout has been created'
+    this.alertColor = 'green'
   }
 }
