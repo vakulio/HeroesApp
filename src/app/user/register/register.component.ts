@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { IUser } from 'src/app/models/user.models';
 import { AuthService } from 'src/app/services/auth.service';
+import { RegisterValidators } from '../validators/register-validators';
 
 @Component({
   selector: 'app-register',
@@ -39,7 +40,7 @@ export class RegisterComponent {
     email: this.email,
     password: this.password,
     confirmPassword: this.confirmPassword,
-  });
+  }, [RegisterValidators.matchPasswordValidator, RegisterValidators.allowedDomainValidator, RegisterValidators.maxDotsBeforeAtValidator, RegisterValidators.notContainsEmailOrUsernameValidator, RegisterValidators.maxNineSymbolsAfterAtValidator]);
 
   async register() {
     this.showAlert = true

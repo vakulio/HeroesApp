@@ -7,4 +7,11 @@ duration-500 focus:outline-none rounded bg-transparent focus:border-indigo-400" 
   </p>
   <p *ngIf="control.errors?.['email']" class="text-red-400">Please enter valid Email
   </p>
+  <p *ngIf="control.errors?.['noMatch']" class="text-red-400">Passwords don't match</p>
+  <p *ngIf="control.errors?.['invalidDomain']" class="text-red-400">Invalid domain. We support only (.com, .net, .org, .co, .us) domains</p>
+  <p *ngIf="control.errors?.['maxDotsBeforeAt']" class="text-red-400">We don't support more than 3 dots before symbol @</p>
+  <p *ngIf="control.errors?.['maxFiveSymbolsAfterAt']" class="text-red-400">We don't support more than 9 symbols after symbol @</p>
+
+  <p *ngIf="control.errors?.['containsEmail']" class="text-red-400">Password contains parts of Email</p>
+  <p *ngIf="control.errors?.['containsUsername']" class="text-red-400">Password contains parts of username</p>
 </ng-container>
