@@ -92,7 +92,6 @@ export class RegisterValidators {
     const error = {...errorEmail, ...errorNames}
 
     password.setErrors({...error, ...password.errors})
-    console.log(password.errors)
 
     return error;
   }
