@@ -11,6 +11,8 @@ import { AngularFireModule } from '@angular/fire/compat'
 import { environment } from 'src/environments/environment';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth'
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { ArenaComponent } from './arena/arena.component';
+import { ScoreComponent } from './score/score.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +21,8 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
     NotFoundComponent,
     AboutComponent,
     HomeComponent,
+    ArenaComponent,
+    ScoreComponent,
   ],
   imports: [
     BrowserModule,

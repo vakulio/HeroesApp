@@ -1,6 +1,6 @@
 <header id="header" class="bg-secondary">
   <nav class="container mx-auto flex justify-start items-center py-8 px-4">
-    <a class="text-3xl text-purple-600 font-bold uppercase mr-4" href="index.html">Heroes App</a>
+    <a class="text-3xl text-purple-600 font-bold uppercase mr-4" routerLink="/">Heroes App</a>
 
     <div class="flex flex-grow items-center">
       <ul class="flex flex-row mt-1">
@@ -9,10 +9,13 @@
         </li>
         <ng-template #authLinks>
           <li>
-            <a class="px-2 hover:text-purple-400" href="#">Heroes</a>
+            <a class="px-2 hover:text-purple-400" routerLink="/arena" routerLinkActive="text-purple-400">Heroes</a>
           </li>
           <li>
-            <a class="px-2 hover:text-purple-400" href="#">Arena</a>
+            <a class="px-2 hover:text-purple-400" routerLink="/arena" routerLinkActive="text-purple-400">Arena</a>
+          </li>
+          <li>
+            <a class="px-2 hover:text-purple-400" routerLink="/score" routerLinkActive="text-purple-400">Score</a>
           </li>
         </ng-template>
       </ul>
