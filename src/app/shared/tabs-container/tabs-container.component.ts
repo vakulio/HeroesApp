@@ -1,10 +1,11 @@
-import { Component, ContentChildren, AfterContentInit, QueryList } from '@angular/core';
+import { Component, ContentChildren, AfterContentInit, QueryList, ChangeDetectionStrategy } from '@angular/core';
 import { TabComponent } from '../tab/tab.component';
 
 @Component({
   selector: 'app-tabs-container',
   templateUrl: './tabs-container.component.html',
-  styleUrls: ['./tabs-container.component.css']
+  styleUrls: ['./tabs-container.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TabsContainerComponent implements AfterContentInit {
 
