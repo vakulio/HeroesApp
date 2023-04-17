@@ -1,4 +1,5 @@
 import { ValidationErrors, AbstractControl } from '@angular/forms';
+import { allowedDomains } from './allowed-domains.const';
 
 export class RegisterValidators {
   static matchPasswordValidator(
@@ -28,7 +29,7 @@ export class RegisterValidators {
       console.error("Form controls email can't be foun in the form group")
       return { controlNotFound: false };
     }
-    const allowedDomains = ['.com', '.net', '.org', '.co', '.us'];
+
     const domain = email.value.substr(email.value.lastIndexOf('.'));
 
     const error =
