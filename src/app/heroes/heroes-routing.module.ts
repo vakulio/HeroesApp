@@ -5,11 +5,14 @@ import { CurrentHeroComponent } from './current-hero/current-hero.component';
 
 const routes: Routes = [
   {
-    path: 'allHeroes',
-    component: AllHeroesComponent
+    path: 'all-heroes',
+    component: AllHeroesComponent,
+    data: {
+      authOnly: true,
+    }
   },
   {
-    path: 'hero',
+    path: 'hero/:id',
     component: CurrentHeroComponent
   }
 ];

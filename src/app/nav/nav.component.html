@@ -9,7 +9,7 @@
         </li>
         <ng-template #authLinks>
           <li>
-            <a class="px-2 hover:text-purple-400" routerLink="/arena" routerLinkActive="text-purple-400">Heroes</a>
+            <a class="px-2 hover:text-purple-400" routerLink="/all-heroes" routerLinkActive="text-purple-400">Heroes</a>
           </li>
           <li>
             <a class="px-2 hover:text-purple-400" routerLink="/arena" routerLinkActive="text-purple-400">Arena</a>
@@ -21,9 +21,11 @@
       </ul>
       <ul class="flex flex-row ml-auto">
         <li *ngIf="(auth.isAuth$ | async)">
-          <a class="px-2 hover:text-purple-400" href="#" (click)="logout($event)">Logout</a>
+          <a class="px-2 hover:text-purple-400" routerLink="/account" routerLinkActive="text-purple-400">Accout</a>
         </li>
-
+        <li *ngIf="(auth.isAuth$ | async)">
+          <a class="px-2 hover:text-purple-400" href="#" (click)="auth.logout($event)">Logout</a>
+        </li>
       </ul>
     </div>
   </nav>

@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router';
 
 @Component({
   selector: 'app-current-hero',
@@ -6,6 +7,15 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   styleUrls: ['./current-hero.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CurrentHeroComponent {
+export class CurrentHeroComponent implements OnInit {
+  id = ''
+
+  constructor(public route: ActivatedRoute) {}
+
+  ngOnInit(): void {
+      this.route.params.subscribe((params: Params) => {
+        this.id = params['id'];
+      })
+  }
 
 }

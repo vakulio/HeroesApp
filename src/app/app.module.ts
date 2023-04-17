@@ -12,6 +12,9 @@ import { AngularFireAuthModule } from '@angular/fire/compat/auth'
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { ArenaComponent } from './arena/arena.component';
 import { ScoreComponent } from './score/score.component';
+import { HeroesModule } from './heroes/heroes.module';
+import { AccountComponent } from './account/account.component';
+import { AgGridModule } from 'ag-grid-angular';
 
 @NgModule({
   declarations: [
@@ -21,6 +24,7 @@ import { ScoreComponent } from './score/score.component';
     HomeComponent,
     ArenaComponent,
     ScoreComponent,
+    AccountComponent,
   ],
   imports: [
     BrowserModule,
@@ -28,7 +32,9 @@ import { ScoreComponent } from './score/score.component';
     UserModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    HeroesModule,
+    AgGridModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { ArenaComponent } from './arena/arena.component';
 import { ScoreComponent } from './score/score.component';
+import { AccountComponent } from './account/account.component';
 
 const routes: Routes = [
   {
@@ -11,11 +12,24 @@ const routes: Routes = [
   },
   {
     path: 'arena',
-    component: ArenaComponent
+    component: ArenaComponent,
+    data: {
+      authOnly: true,
+    }
   },
   {
     path: 'score',
-    component: ScoreComponent
+    component: ScoreComponent,
+    data: {
+      authOnly: true,
+    }
+  },
+  {
+    path: "account",
+    component: AccountComponent,
+    data: {
+      authOnly: true,
+    }
   }
 ];
 
