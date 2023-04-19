@@ -28,12 +28,12 @@ import { AgGridModule } from 'ag-grid-angular';
   ],
   imports: [
     BrowserModule,
+    HeroesModule,
     AppRoutingModule,
     UserModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     AngularFirestoreModule,
-    HeroesModule,
     AgGridModule
   ],
   providers: [],

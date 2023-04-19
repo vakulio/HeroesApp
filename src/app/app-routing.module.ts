@@ -4,6 +4,7 @@ import { HomeComponent } from './home/home.component';
 import { ArenaComponent } from './arena/arena.component';
 import { ScoreComponent } from './score/score.component';
 import { AccountComponent } from './account/account.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 const routes: Routes = [
   {
@@ -30,6 +31,10 @@ const routes: Routes = [
     data: {
       authOnly: true,
     }
+  },
+  {
+    path: "**",
+    component: NotFoundComponent
   }
 ];
 

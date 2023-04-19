@@ -19,6 +19,7 @@ export class AuthService {
   constructor(
     private auth: AngularFireAuth,
     private db: AngularFirestore,
+    private afAuth: AngularFireAuth,
     private router: Router,
     private route: ActivatedRoute)
     {
@@ -70,7 +71,7 @@ export class AuthService {
       $event.preventDefault()
     }
 
-    await this.auth.signOut()
+    await this.afAuth.signOut()
     if(this.redirect){
       await this.router.navigateByUrl('/')
     }

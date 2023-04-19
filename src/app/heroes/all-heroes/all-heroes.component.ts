@@ -7,6 +7,8 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AllHeroesComponent {
+  showInfo = false;
+
   mock =  {
     "id": "100",
     "name": "Black Flash",
