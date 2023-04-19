@@ -5,7 +5,6 @@ import { ModalService } from 'src/app/services/modal.service';
   selector: 'app-auth-modal',
   templateUrl: './auth-modal.component.html',
   styleUrls: ['./auth-modal.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AuthModalComponent implements OnInit, OnDestroy {
 

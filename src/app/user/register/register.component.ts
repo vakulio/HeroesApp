@@ -10,7 +10,6 @@ import { EmailTaken } from '../validators/email-taken';
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RegisterComponent {
   constructor(

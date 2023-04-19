@@ -5,7 +5,6 @@ import { ModalService } from 'src/app/services/modal.service';
   selector: 'app-modal',
   templateUrl: './modal.component.html',
   styleUrls: ['./modal.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ModalComponent implements OnInit, OnDestroy {
   @Input() modalId = ''

@@ -5,7 +5,6 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoginComponent {
   creds = {
