@@ -4,29 +4,37 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
 import { NotFoundComponent } from './not-found/not-found.component';
-import { AboutComponent } from './about/about.component';
 import { HomeComponent } from './home/home.component';
 import { UserModule } from './user/user.module';
 import { AngularFireModule } from '@angular/fire/compat'
 import { environment } from 'src/environments/environment';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth'
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { ArenaComponent } from './arena/arena.component';
+import { ScoreComponent } from './score/score.component';
+import { HeroesModule } from './heroes/heroes.module';
+import { AccountComponent } from './account/account.component';
+import { AgGridModule } from 'ag-grid-angular';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavComponent,
     NotFoundComponent,
-    AboutComponent,
     HomeComponent,
+    ArenaComponent,
+    ScoreComponent,
+    AccountComponent,
   ],
   imports: [
     BrowserModule,
+    HeroesModule,
     AppRoutingModule,
     UserModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    AgGridModule
   ],
   providers: [],
   bootstrap: [AppComponent]

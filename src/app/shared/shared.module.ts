@@ -6,6 +6,7 @@ import { TabComponent } from './tab/tab.component';
 import { AlertComponent } from './alert/alert.component';
 import { InputComponent } from './input/input.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HeroElComponent } from './hero-el/hero-el.component';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     TabsContainerComponent,
     TabComponent,
     AlertComponent,
-    InputComponent
+    InputComponent,
+    HeroElComponent
   ],
   imports: [
     CommonModule,
