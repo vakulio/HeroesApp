@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { IUser } from 'src/app/models/user.models';
 import { AuthService } from 'src/app/services/auth.service';
+import { RegisterValidators } from '../validators/register-validators';
+import { EmailTaken } from '../validators/email-taken';
+
 
 @Component({
   selector: 'app-register',
@@ -10,7 +13,8 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class RegisterComponent {
   constructor(
-    private auth: AuthService
+    private auth: AuthService,
+    private emailTaken: EmailTaken
   ) {}
 
   name = new FormControl('', [
@@ -20,7 +24,7 @@ export class RegisterComponent {
   email = new FormControl('', [
     Validators.required,
     Validators.email,
-  ],)
+  ], [this.emailTaken.validate])
   password = new FormControl('', [
     Validators.required,
     Validators.pattern(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm)
@@ -39,7 +43,7 @@ export class RegisterComponent {
     email: this.email,
     password: this.password,
     confirmPassword: this.confirmPassword,
-  });
+  }, [RegisterValidators.matchPasswordValidator, RegisterValidators.allowedDomainValidator, RegisterValidators.maxDotsBeforeAtValidator, RegisterValidators.notContainsEmailOrUsernameValidator, RegisterValidators.maxNineSymbolsAfterAtValidator]);
 
   async register() {
     this.showAlert = true
