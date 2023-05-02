@@ -10,7 +10,6 @@ import { HeroesService } from 'src/app/services/heroes.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CurrentHeroComponent implements OnInit, OnDestroy {
-
   constructor(
     public route: ActivatedRoute,
     public heroService: HeroesService,

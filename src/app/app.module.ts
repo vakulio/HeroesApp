@@ -15,6 +15,7 @@ import { ScoreComponent } from './score/score.component';
 import { HeroesModule } from './heroes/heroes.module';
 import { AccountComponent } from './account/account.component';
 import { AgGridModule } from 'ag-grid-angular';
+import {CdkAccordionModule} from '@angular/cdk/accordion'
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { AgGridModule } from 'ag-grid-angular';
     AngularFireAuthModule,
     AngularFirestoreModule,
     AgGridModule,
+    CdkAccordionModule
   ],
   providers: [],
   bootstrap: [AppComponent]

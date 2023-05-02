@@ -1,7 +1,12 @@
-<div class="flex px-80 py-12">
-  <img [src]='heroService.hero.image.url' alt="No Image" crossorigin="anonymous">
-  <div class="mx-28">
+<div class="flex flex-wrap justify-center mt-5">
+  <div class="justify-normal flex w-1/2 h-full">
+    <img [src]='heroService.hero.image.url' class="h-96" alt="No Image" crossorigin="anonymous">
+  <div class="mx-28 w-full">
     <h2 class="text-5xl">{{heroService.hero.name}}</h2>
+    <h6>{{heroService.hero.biography['full-name']}}</h6>
+    <p>
+      <span class="px-2 rounded-lg mr-2" [ngClass]="{ 'bg-blue-600' : heroService.hero.appearance.gender === 'Male', 'bg-pink-600': heroService.hero.appearance.gender === 'Female' }">{{heroService.hero.appearance.gender}}</span> <span class="px-2 rounded-lg mr-2" [ngClass]="{ 'bg-gray-400' : heroService.hero.biography.alignment === 'good', 'bg-red-900': heroService.hero.biography.alignment === 'bad' }">{{heroService.hero.biography.alignment | uppercase}}</span>
+    </p>
     <h4 class="text-3xl mt-3">Hero powerstats:</h4>
     <ul>
       <li>Intelligence: <span class="text-lg text-blue-500">{{heroService.hero.powerstats.intelligence}}</span></li>
@@ -11,6 +16,35 @@
       <li>Power: <span class="text-lg text-red-700">{{heroService.hero.powerstats.power}}</span></li>
       <li>Combat: <span class="text-lg text-green-500">{{heroService.hero.powerstats.combat}}</span></li>
     </ul>
-    <p>{{heroService.hero.biography | json}}</p>
+    <cdk-accordion class="example-accordion">
+      <cdk-accordion-item
+        #accordionItem="cdkAccordionItem"
+        class="example-accordion-item"
+        role="button"
+        tabindex="0"
+        [attr.id]="'accordion-header-' + heroService.hero.id"
+        [attr.aria-expanded]="accordionItem.expanded"
+        [attr.aria-controls]="'accordion-body-' + heroService.hero.id">
+        <div class="example-accordion-item-header" (click)="accordionItem.toggle()">
+          Biography
+          <span class="example-accordion-item-description">
+            Click to {{ accordionItem.expanded ? 'close' : 'open' }}
+          </span>
+        </div>
+        <div
+          class="example-accordion-item-body"
+          role="region"
+          [style.display]="accordionItem.expanded ? '' : 'none'"
+          [attr.id]="'accordion-body-' + heroService.hero.id"
+          [attr.aria-labelledby]="'accordion-header-' + heroService.hero.id">
+          <ul>
+            <li>Born: {{heroService.hero.biography["place-of-birth"]}} </li>
+            <li>First-appearance: {{heroService.hero.biography["first-appearance"]}} </li>
+            <li>Publisher:{{heroService.hero.biography["publisher"]}}</li>
+          </ul>
+        </div>
+      </cdk-accordion-item>
+    </cdk-accordion>
+  </div>
   </div>
 </div>
