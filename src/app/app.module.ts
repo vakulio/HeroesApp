@@ -15,6 +15,7 @@ import { ScoreComponent } from './score/score.component';
 import { HeroesModule } from './heroes/heroes.module';
 import { AccountComponent } from './account/account.component';
 import { AgGridModule } from 'ag-grid-angular';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,7 @@ import { AgGridModule } from 'ag-grid-angular';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     AngularFirestoreModule,
-    AgGridModule
+    AgGridModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
