@@ -1,7 +1,16 @@
-<div>
-  <img src="https://picsum.photos/536/354" alt="">
-  <div>
-    <p>{{this.id}}</p>
-    <p>stats</p>
+<div class="flex px-80 py-12">
+  <img [src]='heroService.hero.image.url' alt="No Image" crossorigin="anonymous">
+  <div class="mx-28">
+    <h2 class="text-5xl">{{heroService.hero.name}}</h2>
+    <h4 class="text-3xl mt-3">Hero powerstats:</h4>
+    <ul>
+      <li>Intelligence: <span class="text-lg text-blue-500">{{heroService.hero.powerstats.intelligence}}</span></li>
+      <li>Strength: <span class="text-lg text-red-500">{{heroService.hero.powerstats.strength}}</span></li>
+      <li>Speed: <span class="text-lg text-yellow-500">{{heroService.hero.powerstats.speed}}</span></li>
+      <li>Durability: <span class="text-lg text-gray-500">{{heroService.hero.powerstats.durability}}</span></li>
+      <li>Power: <span class="text-lg text-red-700">{{heroService.hero.powerstats.power}}</span></li>
+      <li>Combat: <span class="text-lg text-green-500">{{heroService.hero.powerstats.combat}}</span></li>
+    </ul>
+    <p>{{heroService.hero.biography | json}}</p>
   </div>
 </div>

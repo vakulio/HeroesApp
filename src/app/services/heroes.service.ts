@@ -9,6 +9,7 @@ import { HeroResponse, IHero } from '../models/hero.models';
 })
 export class HeroesService {
   heroes: IHero[] = [];
+  hero: IHero = {} as IHero;
   selectedHeroes: IHero[] = [];
   get lastSelectedHero(): IHero {
     return this.selectedHeroes[this.selectedHeroes.length - 1];
@@ -19,7 +20,7 @@ export class HeroesService {
   loadHeroes(query: string, cd: ChangeDetectorRef): void {
     this.http
       .get<HeroResponse>(
-        `/api/search/${query}`
+        `${environment.apiUrl}${environment.apiToken}/search/${query}`
       )
       .pipe(
         map((response) => {
@@ -29,6 +30,22 @@ export class HeroesService {
       .pipe(finalize(() => cd.markForCheck()))
       .subscribe((heroes) => {
         this.heroes = heroes;
+      });
+  }
+
+  getHero(query: string, cd: ChangeDetectorRef): void {
+    this.http
+      .get<IHero>(
+        `${environment.apiUrl}${environment.apiToken}/${query}`
+      )
+      .pipe(
+        map((response) => {
+          return response;
+        })
+      )
+      .pipe(finalize(() => cd.markForCheck()))
+      .subscribe((heroes) => {
+        this.hero = heroes;
       });
   }
 }
