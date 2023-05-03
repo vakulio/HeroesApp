@@ -2,27 +2,13 @@
   <div class="py-4 text-center">
     <div class="relative inline-block w-3/6">
       <form [formGroup]="form">
-        <input type="text" formControlName="searchInput" (keyup)="searchByEnter($event)" class="rounded-lg w-full h-8 text-cyan-800 font-bold font-sans pl-2" type="text" maxlength="25"><img
+        <input formControlName="searchInput" (keyup)="searchByEnter($event)" class="rounded-lg w-full h-8 text-cyan-800 font-bold font-sans pl-2" type="text" maxlength="25"><img
         class="w-6 absolute right-2.5 top-1" src="../../../assets/icons/search.png" alt="">
+        <div class="mt-3"><span (click)="inputOldSearch(searchItem)" class="px-2 rounded-lg mr-2 bg-purple-500 cursor-pointer" *ngFor="let searchItem of recentSearches">{{ searchItem }}</span></div>
       </form>
     </div>
   </div>
-  <ul class="flex flex-wrap gap-1" >
-
-    <li class="h-56 w-44 pt-2 relative" *ngFor="let hero of heroService.heroes" (mouseover)="showInfo = true" (mouseleave)="showInfo = false">
-      <div
-        class="before:absolute before:top-0 before:left-0 before:right-0 before:bottom-0 before:bg-[rgba(0,0,0,0.5)] before:opacity-0 before:transition-opacity hover:before:opacity-100">
-        <div class="flex flex-col items-center">
-          <img class="h-52 w-40" [src]='hero.image.url' alt="dd" crossorigin="anonymous">
-        </div>
-        <div class="absolute top-1/2 left-1/2 text-center transform -translate-x-1/2 -translate-y-1/2" [hidden]="!showInfo">
-          <p class="backdrop-blur-sm">{{ hero.name }}</p>
-          <a routerLink="/hero/{{hero.id}}">
-            See more
-          </a>
-        </div>
-      </div>
-    </li>
-
+  <ul>
+    <app-hero class="flex flex-wrap gap-1" [heroes]="heroService.heroes"></app-hero>
   </ul>
 </div>

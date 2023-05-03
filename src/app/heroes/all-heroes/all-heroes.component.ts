@@ -6,14 +6,12 @@ import { HeroesService } from 'src/app/services/heroes.service';
   selector: 'app-all-heroes',
   templateUrl: './all-heroes.component.html',
   styleUrls: ['./all-heroes.component.css'],
-  changeDetection: ChangeDetectionStrategy.Default,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AllHeroesComponent {
-  showInfo = false;
   recentSearches: string[] = sessionStorage.getItem('searches')?.split(',') || [];
-  currentLetter: string = 'a';
   form: FormGroup = this.formBuilder.group(
-    { searchInput: ['', [Validators.required]],
+    { searchInput: ['a', [Validators.required]],
        },
     );
 
@@ -21,7 +19,9 @@ export class AllHeroesComponent {
     public heroService: HeroesService,
     private formBuilder: FormBuilder,
     private changeDetection: ChangeDetectorRef
-    ) {}
+    ) {
+      this.search()
+    }
 
   private search(): void {
     this.addRecentSearch(this.form.value.searchInput);
@@ -38,15 +38,21 @@ export class AllHeroesComponent {
       return;
     }
     this.search();
-    console.log(this.heroService.heroes)
   }
 
-  addRecentSearch(query: string): void {
-    if (this.recentSearches.includes(query)) {
+  inputOldSearch(value: string) {
+    this.form.value.searchInput = value
+    const input = document.querySelector('input') as HTMLInputElement;
+    if (input) input.value = value;
+    this.search();
+  }
+
+  addRecentSearch(str: string): void {
+    if (this.recentSearches.includes(str)) {
       return;
     }
 
-    this.recentSearches.unshift(query);
+    this.recentSearches.unshift(str);
 
     if (this.recentSearches.length === 6) this.recentSearches.pop();
 

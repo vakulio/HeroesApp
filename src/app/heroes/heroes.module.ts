@@ -7,12 +7,14 @@ import { AllHeroesComponent } from './all-heroes/all-heroes.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CdkAccordionModule } from '@angular/cdk/accordion';
+import { HeroComponent } from './hero/hero.component';
 
 
 @NgModule({
   declarations: [
     AllHeroesComponent,
-    CurrentHeroComponent
+    CurrentHeroComponent,
+    HeroComponent
   ],
   imports: [
     CommonModule,
