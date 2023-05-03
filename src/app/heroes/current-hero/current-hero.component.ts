@@ -2,12 +2,14 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnIni
 import { ActivatedRoute, Params } from '@angular/router';
 import { IHero } from 'src/app/models/hero.models';
 import { HeroesService } from 'src/app/services/heroes.service';
+import { AddPercentPipe } from '../pipes/add-percent.pipe';
 
 @Component({
   selector: 'app-current-hero',
   templateUrl: './current-hero.component.html',
   styleUrls: ['./current-hero.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [AddPercentPipe]
 })
 export class CurrentHeroComponent implements OnInit, OnDestroy {
   constructor(
