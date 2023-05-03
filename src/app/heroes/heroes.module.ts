@@ -10,7 +10,8 @@ import { CdkAccordionModule } from '@angular/cdk/accordion';
 import { HeroComponent } from './hero/hero.component';
 import { AddPercentPipe } from './pipes/add-percent.pipe';
 import { PowerStatItemComponent } from './shared/power-stat-item/power-stat-item.component';
-
+import {MatSelectModule} from '@angular/material/select'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,9 @@ import { PowerStatItemComponent } from './shared/power-stat-item/power-stat-item
     HeroesRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    CdkAccordionModule
+    CdkAccordionModule,
+    MatSelectModule,
+    BrowserAnimationsModule
   ],
   exports: [PercentPipe],
   providers: [PercentPipe]

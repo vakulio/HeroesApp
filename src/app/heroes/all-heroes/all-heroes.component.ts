@@ -9,6 +9,8 @@ import { HeroesService } from 'src/app/services/heroes.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AllHeroesComponent implements OnInit {
+  selected = ''
+  ALPHABET = 'abcdefghijklmnopqrstuvxyz';
   recentSearches: string[] = sessionStorage.getItem('searches')?.split(',') || [];
   form: FormGroup = this.formBuilder.group(
     { searchInput: ['', [Validators.required]],
@@ -25,28 +27,29 @@ export class AllHeroesComponent implements OnInit {
     this.heroService.loadHeroes("a", this.changeDetection);
   }
 
-  private search(): void {
-    this.addRecentSearch(this.form.value.searchInput);
+  private search(value:string): void {
+    this.addRecentSearch(value);
 
-    if (this.form.invalid) {
-      return;
-    }
+    this.heroService.loadHeroes(value, this.changeDetection);
+  }
 
-    this.heroService.loadHeroes(this.form.value.searchInput, this.changeDetection);
+  alphabetSearch(value: string) {
+   if(!value) return;
+   this.search(value);
   }
 
   searchByEnter(event: KeyboardEvent) {
     if (event.code !== 'Enter') {
       return;
     }
-    this.search();
+    this.search(this.form.value.searchInput);
   }
 
   inputOldSearch(value: string) {
     this.form.value.searchInput = value
     const input = document.querySelector('input') as HTMLInputElement;
     if (input) input.value = value;
-    this.search();
+    this.search(this.form.value.searchInput);
   }
 
   addRecentSearch(str: string): void {

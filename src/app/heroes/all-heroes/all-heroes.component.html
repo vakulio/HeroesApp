@@ -1,11 +1,19 @@
 <div class="mx-auto my-0 w-3/5 h-screen pt-5">
-  <div class="py-4 text-center">
-    <div class="relative inline-block w-3/6">
+  <div class="py-4 flex justify-between">
+    <mat-form-field class="w-40" appearance="fill">
+      <mat-label>Choose letter</mat-label>
+      <mat-select [(value)]="selected" (valueChange)="alphabetSearch($event)">
+        <mat-option>None</mat-option>
+        <mat-option *ngFor="let letter of ALPHABET.split('')" [value]="letter">{{letter | uppercase}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <div class="relative inline-block w-5/6">
       <form [formGroup]="form">
-        <input formControlName="searchInput" (keyup)="searchByEnter($event)" class="rounded-lg w-full h-8 text-cyan-800 font-bold font-sans pl-2" type="text" maxlength="25"><img
-        class="w-6 absolute right-2.5 top-1" src="../../../assets/icons/search.png" alt="">
+        <div><input formControlName="searchInput" (keyup)="searchByEnter($event)" class="rounded-lg w-full h-8 text-cyan-800 font-bold font-sans pl-2" type="text" maxlength="25"><img
+          class="w-6 absolute right-2.5 top-1" src="../../../assets/icons/search.png" alt=""></div>
         <div class="mt-3"><span (click)="inputOldSearch(searchItem)" class="px-2 rounded-lg mr-2 bg-purple-500 cursor-pointer" *ngFor="let searchItem of recentSearches">{{ searchItem }}</span></div>
       </form>
+
     </div>
   </div>
   <ul>
