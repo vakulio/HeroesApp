@@ -10,6 +10,7 @@ import { switchMap, map } from 'rxjs/operators';
 import { of, BehaviorSubject, combineLatest } from 'rxjs'
 import { IBattle } from '../models/battle.models';
 import { IUserDB } from '../models/user.models';
+import { IHero } from '../models/hero.models';
 
 @Injectable({
   providedIn: 'root',
@@ -17,6 +18,7 @@ import { IUserDB } from '../models/user.models';
 export class BattleService  {
   public battleCollection: AngularFirestoreCollection<IBattle>;
   public userCollection: AngularFirestoreCollection<IUserDB>;
+  battleHero: IHero | null = null
   battles: IBattle[] = []
   pendingReq = false
 
@@ -26,6 +28,10 @@ export class BattleService  {
     ) {
     this.battleCollection = db.collection('battles');
     this.userCollection = db.collection('users');
+  }
+
+  chooseBattleHero(hero: IHero | null) {
+    this.battleHero = hero
   }
 
   saveBattle(data: IBattle): Promise<DocumentReference<IBattle>> {

@@ -2,10 +2,10 @@
   <div
     class="before:absolute before:top-0 before:left-0 before:right-0 before:bottom-0 before:bg-[rgba(0,0,0,0.5)] before:opacity-0 before:transition-opacity hover:before:opacity-100">
     <div class="flex flex-col items-center">
-      <img class="h-52 w-40" [src]='hero.image.url' alt="dd" crossorigin="anonymous">
+      <img class="flex h-52 w-40 text-center" [src]='hero.image.url' alt="No Image" crossorigin="anonymous">
     </div>
     <div class="absolute top-1/2 left-1/2 text-center transform -translate-x-1/2 -translate-y-1/2 h-full">
-      <p class="backdrop-blur-sm rounded-md relative top-3 text-xs">{{ hero.name }}</p>
+      <p class="backdrop-blur-sm rounded-md relative top-10 text-xs">{{ hero.name }}</p>
       <a class="relative top-36" routerLink="/hero/{{hero.id}}">
         See more
       </a>

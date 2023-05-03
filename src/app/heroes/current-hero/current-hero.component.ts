@@ -3,6 +3,7 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { IHero } from 'src/app/models/hero.models';
 import { HeroesService } from 'src/app/services/heroes.service';
 import { AddPercentPipe } from '../pipes/add-percent.pipe';
+import { BattleService } from 'src/app/services/battle.service';
 
 @Component({
   selector: 'app-current-hero',
@@ -15,7 +16,8 @@ export class CurrentHeroComponent implements OnInit, OnDestroy {
   constructor(
     public route: ActivatedRoute,
     public heroService: HeroesService,
-    private changeDetection: ChangeDetectorRef
+    private changeDetection: ChangeDetectorRef,
+    public battle: BattleService
     ) {}
 
   ngOnInit(): void {
@@ -26,6 +28,14 @@ export class CurrentHeroComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.heroService.hero = {} as IHero;
+  }
+
+  toggleHero(hero: IHero): void {
+    if(hero.id === this.battle.battleHero?.id){
+      this.battle.chooseBattleHero(null)
+      return
+    }
+    this.battle.chooseBattleHero(hero)
   }
 
 }

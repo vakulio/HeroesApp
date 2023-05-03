@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HeroesService } from 'src/app/services/heroes.service';
 
@@ -8,10 +8,10 @@ import { HeroesService } from 'src/app/services/heroes.service';
   styleUrls: ['./all-heroes.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AllHeroesComponent {
+export class AllHeroesComponent implements OnInit {
   recentSearches: string[] = sessionStorage.getItem('searches')?.split(',') || [];
   form: FormGroup = this.formBuilder.group(
-    { searchInput: ['a', [Validators.required]],
+    { searchInput: ['', [Validators.required]],
        },
     );
 
@@ -19,9 +19,11 @@ export class AllHeroesComponent {
     public heroService: HeroesService,
     private formBuilder: FormBuilder,
     private changeDetection: ChangeDetectorRef
-    ) {
-      this.search()
-    }
+    ) {}
+
+  ngOnInit(): void {
+    this.heroService.loadHeroes("a", this.changeDetection);
+  }
 
   private search(): void {
     this.addRecentSearch(this.form.value.searchInput);
