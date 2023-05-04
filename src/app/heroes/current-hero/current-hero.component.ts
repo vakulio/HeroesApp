@@ -13,6 +13,8 @@ import { BattleService } from 'src/app/services/battle.service';
   providers: [AddPercentPipe]
 })
 export class CurrentHeroComponent implements OnInit, OnDestroy {
+
+  hero: IHero = {} as IHero;
   constructor(
     public route: ActivatedRoute,
     public heroService: HeroesService,
@@ -22,7 +24,8 @@ export class CurrentHeroComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
       this.route.params.subscribe((params: Params) => {
-          this.heroService.getHero(params['id'], this.changeDetection)
+          this.heroService.getHero(params['id'], this.changeDetection).subscribe()
+
       })
   }
 

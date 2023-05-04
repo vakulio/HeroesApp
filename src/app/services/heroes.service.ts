@@ -2,6 +2,7 @@ import { ChangeDetectorRef, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { finalize, map } from 'rxjs';
+import { tap } from 'rxjs/operators';
 import { HeroResponse, IHero } from '../models/hero.models';
 
 @Injectable({
@@ -33,19 +34,19 @@ export class HeroesService {
       });
   }
 
-  getHero(query: string, cd: ChangeDetectorRef): void {
-    this.http
-      .get<IHero>(
-        `${environment.apiUrl}${environment.apiToken}/${query}`
-      )
+  getHero(query: string, cd: ChangeDetectorRef) {
+    return this.http
+      .get<IHero>(`${environment.apiUrl}${environment.apiToken}/${query}`)
       .pipe(
         map((response) => {
           return response;
         })
       )
-      .pipe(finalize(() => cd.markForCheck()))
-      .subscribe((heroes) => {
-        this.hero = heroes;
-      });
+      .pipe(
+        finalize(() => cd.markForCheck()),
+        tap((hero) => {
+          this.hero = hero;
+        })
+      );
   }
 }

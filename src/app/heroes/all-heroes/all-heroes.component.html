@@ -1,8 +1,8 @@
 <div class="mx-auto my-0 w-3/5 h-screen pt-5">
   <div class="py-4 flex justify-between">
-    <mat-form-field class="w-40" appearance="fill">
+    <mat-form-field [formGroup]="selectedForm" class="w-40" appearance="fill">
       <mat-label>Choose letter</mat-label>
-      <mat-select [(value)]="selected" (valueChange)="alphabetSearch($event)">
+      <mat-select formControlName="selected" (valueChange)="alphabetSearch($event)">
         <mat-option>None</mat-option>
         <mat-option *ngFor="let letter of ALPHABET.split('')" [value]="letter">{{letter | uppercase}}</mat-option>
       </mat-select>
