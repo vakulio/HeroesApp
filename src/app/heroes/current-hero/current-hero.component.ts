@@ -24,7 +24,7 @@ export class CurrentHeroComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
       this.route.params.subscribe((params: Params) => {
-          this.heroService.getHero(params['id'], this.changeDetection).subscribe()
+          this.heroService.getHero(params['id']).subscribe().add(() => this.changeDetection.markForCheck)
 
       })
   }

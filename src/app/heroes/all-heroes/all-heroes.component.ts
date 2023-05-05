@@ -31,13 +31,13 @@ export class AllHeroesComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.heroService.loadHeroes('a', this.changeDetection);
+    this.heroService.loadHeroes('a').add(() => this.changeDetection.markForCheck)
   }
 
   private search(value: string): void {
     this.addRecentSearch(value);
 
-    this.heroService.loadHeroes(value, this.changeDetection);
+    this.heroService.loadHeroes(value).add(() => this.changeDetection.markForCheck)
   }
 
   alphabetSearch(value: string) {

@@ -18,8 +18,8 @@ export class HeroesService {
 
   constructor(private http: HttpClient) {}
 
-  loadHeroes(query: string, cd: ChangeDetectorRef): void {
-    this.http
+  loadHeroes(query: string) {
+    return this.http
       .get<HeroResponse>(
         `${environment.apiUrl}${environment.apiToken}/search/${query}`
       )
@@ -28,13 +28,12 @@ export class HeroesService {
           return response.results;
         })
       )
-      .pipe(finalize(() => cd.markForCheck()))
       .subscribe((heroes) => {
         this.heroes = heroes;
       });
   }
 
-  getHero(query: string, cd: ChangeDetectorRef) {
+  getHero(query: string) {
     return this.http
       .get<IHero>(`${environment.apiUrl}${environment.apiToken}/${query}`)
       .pipe(
@@ -43,7 +42,6 @@ export class HeroesService {
         })
       )
       .pipe(
-        finalize(() => cd.markForCheck()),
         tap((hero) => {
           this.hero = hero;
         })
