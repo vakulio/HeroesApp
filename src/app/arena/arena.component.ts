@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { BattleService } from '../services/battle.service';
 
 @Component({
   selector: 'app-arena',
@@ -7,5 +8,48 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ArenaComponent {
+  constructor(public battle: BattleService) {}
+  battleStarted = false;
+  mok = {
+    response: 'success',
+    id: '2',
+    name: 'Abe Sapien',
+    powerstats: {
+      intelligence: '88',
+      strength: '28',
+      speed: '35',
+      durability: '65',
+      power: '100',
+      combat: '85',
+    },
+    biography: {
+      'full-name': 'Abraham Sapien',
+      'alter-egos': 'No alter egos found.',
+      aliases: ['Langdon Everett Caul', 'Abraham Sapien', 'Langdon Caul'],
+      'place-of-birth': '-',
+      'first-appearance': 'Hellboy: Seed of Destruction (1993)',
+      publisher: 'Dark Horse Comics',
+      alignment: 'good',
+    },
+    appearance: {
+      gender: 'Male',
+      race: 'Icthyo Sapien',
+      height: ["6'3", '191 cm'],
+      weight: ['145 lb', '65 kg'],
+      'eye-color': 'Blue',
+      'hair-color': 'No Hair',
+    },
+    work: { occupation: 'Paranormal Investigator', base: '-' },
+    connections: {
+      'group-affiliation': 'Bureau for Paranormal Research and Defense',
+      relatives: 'Edith Howard (wife, deceased)',
+    },
+    image: {
+      url: 'https://www.superherodb.com/pictures2/portraits/10/100/956.jpg',
+    },
+  };
 
+  startBattle() {
+    this.battleStarted = true;
+  }
 }

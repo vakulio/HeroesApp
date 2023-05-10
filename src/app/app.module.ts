@@ -17,6 +17,7 @@ import { AccountComponent } from './account/account.component';
 import { AgGridModule } from 'ag-grid-angular';
 import { CdkAccordionModule } from '@angular/cdk/accordion';
 import { MatCardModule } from '@angular/material/card';
+import { BattlePersonComponent } from './arena/battle-person/battle-person.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { MatCardModule } from '@angular/material/card';
     ArenaComponent,
     ScoreComponent,
     AccountComponent,
+    BattlePersonComponent,
   ],
   imports: [
     BrowserModule,
