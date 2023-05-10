@@ -1,15 +1,57 @@
 <div class="flex justify-center pt-5">
-  <mat-card class="max-w-screen-xl">
+  <mat-card class="max-w-screen-2xl">
     <mat-card-header>
       <mat-card-title class="text-5xl">User: {{userData?.name}}</mat-card-title>
       <mat-card-subtitle class="text-3xl">Email: {{userData?.email}}</mat-card-subtitle>
+      <mat-card-subtitle class="text-3xl">Battles: {{userBattles.length}}</mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
       <p *ngIf="userData?.heroes?.length">
         Heroes used:
         <li *ngFor="let hero of userData?.heroes">{{ hero }}</li>
       </p>
-      <div>{{ userBattles | json }}</div>
+      <div class="flex justify-center">
+        <div class="w-full pt-6">
+          <table mat-table [dataSource]="userBattles">
+
+            <ng-container matColumnDef="userName">
+              <th mat-header-cell *matHeaderCellDef> User Name </th>
+              <td mat-cell *matCellDef="let element"> {{element.userName}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="timestamp">
+              <th mat-header-cell *matHeaderCellDef> Date </th>
+              <td mat-cell *matCellDef="let element"> {{element.timestamp | fbTimestamp}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="heroName">
+              <th mat-header-cell *matHeaderCellDef> Hero </th>
+              <td mat-cell *matCellDef="let element"> <a class="hover:text-purple-500" routerLink="/hero/{{element.heroId}}">
+                  {{element.heroName}}
+                </a> </td>
+            </ng-container>
+
+            <ng-container matColumnDef="enemyName">
+              <th mat-header-cell *matHeaderCellDef> Enemy </th>
+              <td mat-cell *matCellDef="let element"> <a class="hover:text-purple-500" routerLink="/hero/{{element.enemyId}}">
+                  {{element.enemyName}}
+                </a></td>
+            </ng-container>
+
+            <ng-container matColumnDef="result">
+              <th mat-header-cell *matHeaderCellDef> Win </th>
+              <td mat-cell *matCellDef="let element"> <span class="p-2 rounded-3xl" [ngClass]="{
+                                                  'bg-blue-700' : element.result === element.heroName,
+                                                  'bg-red-700' : element.result !== element.heroName }">
+                  {{element.result}}</span>
+              </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+        </div>
+      </div>
     </mat-card-content>
   </mat-card>
 </div>
