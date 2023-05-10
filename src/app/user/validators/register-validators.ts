@@ -8,14 +8,14 @@ export class RegisterValidators {
     const matchingControl = group.get('confirmPassword');
 
     if (!control || !matchingControl) {
-      console.error("Form controls can't be foun in the form group")
+      console.error("Form controls can't be foun in the form group");
       return { controlNotFound: false };
     }
 
     const error =
       control.value === matchingControl.value ? null : { noMatch: true };
 
-    matchingControl.setErrors(error)
+    matchingControl.setErrors(error);
 
     return error;
   }
@@ -25,16 +25,17 @@ export class RegisterValidators {
   ): ValidationErrors | null {
     const email = group.get('email');
     if (!email) {
-      console.error("Form controls email can't be foun in the form group")
+      console.error("Form controls email can't be foun in the form group");
       return { controlNotFound: false };
     }
     const allowedDomains = ['.com', '.net', '.org', '.co', '.us'];
     const domain = email.value.substr(email.value.lastIndexOf('.'));
 
-    const error =
-    allowedDomains.includes(domain) ? null : { invalidDomain: true };
+    const error = allowedDomains.includes(domain)
+      ? null
+      : { invalidDomain: true };
 
-    email.setErrors({...error, ...email.errors})
+    email.setErrors({ ...error, ...email.errors });
 
     return error;
   }

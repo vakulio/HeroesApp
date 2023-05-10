@@ -12,55 +12,55 @@ import { EmailTaken } from '../validators/email-taken';
   styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent {
-  constructor(
-    private auth: AuthService,
-    private emailTaken: EmailTaken
-  ) {}
+  constructor(private auth: AuthService, private emailTaken: EmailTaken) {}
 
-  name = new FormControl('', [
-    Validators.required,
-    Validators.minLength(3),
-  ])
-  email = new FormControl('', [
-    Validators.required,
-    Validators.email,
-  ], [this.emailTaken.validate])
+  name = new FormControl('', [Validators.required, Validators.minLength(3)]);
+  email = new FormControl(
+    '',
+    [Validators.required, Validators.email],
+    [this.emailTaken.validate]
+  );
   password = new FormControl('', [
     Validators.required,
-    Validators.pattern(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm)
-  ])
+    Validators.pattern(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm),
+  ]);
   confirmPassword = new FormControl('', [
     Validators.required,
-    Validators.pattern(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm)
-  ])
-  showAlert = false
-  alertMsg = 'Please wait! Your account is being created.'
-  alertColor = 'blue'
-  inSubmission = false
+    Validators.pattern(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm),
+  ]);
+  showAlert = false;
+  alertMsg = 'Please wait! Your account is being created.';
+  alertColor = 'blue';
+  inSubmission = false;
 
-  registerForm = new FormGroup({
-    name: this.name,
-    email: this.email,
-    password: this.password,
-    confirmPassword: this.confirmPassword,
-  }, [RegisterValidators.matchPasswordValidator, RegisterValidators.allowedDomainValidator, RegisterValidators.maxDotsBeforeAtValidator, RegisterValidators.maxNineSymbolsAfterAtValidator]);
+  registerForm = new FormGroup(
+    {
+      name: this.name,
+      email: this.email,
+      password: this.password,
+      confirmPassword: this.confirmPassword,
+    },
+    [
+      RegisterValidators.matchPasswordValidator,
+      RegisterValidators.allowedDomainValidator,
+    ]
+  );
 
   async register() {
-    this.showAlert = true
-    this.alertMsg = 'Please wait! Your account is being created.'
-    this.alertColor = 'blue'
-    this.inSubmission = true
+    this.showAlert = true;
+    this.alertMsg = 'Please wait! Your account is being created.';
+    this.alertColor = 'blue';
+    this.inSubmission = true;
 
     try {
-      this.auth.createUser(this.registerForm.value as IUser)
-
+      this.auth.createUser(this.registerForm.value as IUser);
     } catch (error) {
-      this.alertMsg = 'Some error. Please try again'
-      this.alertColor = 'red'
-      this.inSubmission = false
-      return
+      this.alertMsg = 'Some error. Please try again';
+      this.alertColor = 'red';
+      this.inSubmission = false;
+      return;
     }
-    this.alertMsg = 'Success! Accout has been created'
-    this.alertColor = 'green'
+    this.alertMsg = 'Success! Accout has been created';
+    this.alertColor = 'green';
   }
 }

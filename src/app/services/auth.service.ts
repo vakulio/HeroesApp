@@ -58,10 +58,10 @@ export class AuthService {
     await this.userCollections.doc(userCreds.user?.uid).set({
       name: userData.name,
       email: userData.email,
-      money: 100,
+      powerUps: [],
       heroes: [],
-      battleStory: []
-    })
+      battleStory: [],
+    });
 
     await userCreds.user.updateProfile({
       displayName: userData.name
