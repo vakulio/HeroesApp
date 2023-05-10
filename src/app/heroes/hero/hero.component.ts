@@ -4,10 +4,11 @@ import { IHero } from 'src/app/models/hero.models';
 @Component({
   selector: 'app-hero',
   templateUrl: './hero.component.html',
-  styleUrls: ['./hero.component.css']
+  styleUrls: ['./hero.component.css'],
+  providers: [],
 })
 export class HeroComponent {
-  showInfo = false
+  showInfo = false;
 
   @Input() heroes: IHero[] = [];
 
@@ -18,5 +19,4 @@ export class HeroComponent {
   close() {
     this.showInfo = false;
   }
-
 }

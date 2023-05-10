@@ -1,9 +1,11 @@
 export interface IBattle {
   userId: string;
+  userName: string;
   heroName: string;
   heroId: string;
   enemyName: string;
-  timestamp: Date;
+  enemyId: string;
+  timestamp: any;
   result: string;
   docID?: string;
 }

@@ -1,6 +1,6 @@
 <div class="flex flex-wrap justify-center mt-5">
   <div class="justify-normal flex w-2/3 h-full">
-    <img [src]='heroService.hero.image.url' class="h-96" alt="No Image" crossorigin="anonymous">
+    <img [src]='heroService.hero.image.url | replaceUrl' class="h-96" alt="No Image" crossorigin="anonymous">
     <div class="mx-28 w-full">
       <div class="flex justify-between">
         <h2 class="text-5xl inline-block">{{heroService.hero.name}}</h2>

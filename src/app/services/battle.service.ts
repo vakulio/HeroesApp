@@ -40,10 +40,10 @@ export class BattleService {
     return this.battleCollection.add(data);
   }
 
-  getUserBattles(sort$: BehaviorSubject<string>) {
-    return combineLatest([this.auth.user, sort$]).pipe(
+  getUserBattles() {
+    return combineLatest([this.auth.user]).pipe(
       switchMap((values) => {
-        const [user, sort] = values;
+        const [user] = values;
         if (!user) {
           return of([]);
         }
@@ -55,31 +55,12 @@ export class BattleService {
   }
 
   async getBattles() {
-    if (this.pendingReq) {
-      return;
-    }
-
-    this.pendingReq = true;
-
     let query = this.battleCollection.ref
       .orderBy('timestamp', 'desc')
-      .limit(25);
-    const { length } = this.battles;
-
-    if (length) {
-      const lastDocId = this.battles[length - 1].docID;
-      const lastDoc = this.battleCollection.doc(lastDocId).get().toPromise();
-      query = query.startAfter(lastDoc);
-    }
+      .limit(50);
 
     const snapshot = await query.get();
-    snapshot.forEach((doc) => {
-      this.battles.push({
-        docID: doc.id,
-        ...doc.data(),
-      });
-    });
-    this.pendingReq = false;
+    return snapshot;
   }
 
   fight(hero: IHero, enemy: IHero) {

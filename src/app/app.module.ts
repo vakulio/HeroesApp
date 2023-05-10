@@ -14,10 +14,11 @@ import { ArenaComponent } from './arena/arena.component';
 import { ScoreComponent } from './score/score.component';
 import { HeroesModule } from './heroes/heroes.module';
 import { AccountComponent } from './account/account.component';
-import { AgGridModule } from 'ag-grid-angular';
 import { CdkAccordionModule } from '@angular/cdk/accordion';
 import { MatCardModule } from '@angular/material/card';
 import { BattlePersonComponent } from './arena/battle-person/battle-person.component';
+import { MatTableModule } from '@angular/material/table';
+import { FbTimestampPipe } from './pipes/fb-timestamp.pipe';
 
 @NgModule({
   declarations: [
@@ -29,16 +30,17 @@ import { BattlePersonComponent } from './arena/battle-person/battle-person.compo
     ScoreComponent,
     AccountComponent,
     BattlePersonComponent,
+    FbTimestampPipe,
   ],
   imports: [
     BrowserModule,
+    MatTableModule,
     HeroesModule,
     AppRoutingModule,
     UserModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     AngularFirestoreModule,
-    AgGridModule,
     CdkAccordionModule,
     MatCardModule,
   ],

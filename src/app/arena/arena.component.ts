@@ -32,6 +32,7 @@ export class ArenaComponent {
   async saveBattle(hero: IHero, enemy: IHero, result: string) {
     const battle = {
       userId: this.user?.uid as string,
+      userName: this.user?.displayName as string,
       heroName: hero.name,
       heroId: hero.id,
       enemyName: enemy.name,
@@ -40,6 +41,6 @@ export class ArenaComponent {
       result: result,
     };
 
-    const clipDocRef = await this.battle.saveBattle(battle);
+    await this.battle.saveBattle(battle);
   }
 }

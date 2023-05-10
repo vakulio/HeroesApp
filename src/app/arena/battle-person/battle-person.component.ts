@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { IHero } from 'src/app/models/hero.models';
 
+
 @Component({
   selector: 'app-battle-person',
   templateUrl: './battle-person.component.html',

@@ -1,24 +1,40 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { ColDef } from 'ag-grid-community';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  OnInit,
+} from '@angular/core';
+import { BattleService } from '../services/battle.service';
+import { IBattle } from '../models/battle.models';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-score',
   templateUrl: './score.component.html',
   styleUrls: ['./score.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [DatePipe],
 })
-export class ScoreComponent {
-  columnDefs: ColDef[] = [
-    { field: 'user', resizable: true  },
-    { field: 'hero', resizable: true  },
-    { field: 'enemy', resizable: true },
-    { field: 'result', resizable: true  }
-];
+export class ScoreComponent implements OnInit {
+  displayedColumns: string[] = [
+    'userName',
+    'timestamp',
+    'heroName',
+    'enemyName',
+    'result',
+  ];
+  dataSource: IBattle[] = [];
+  constructor(public battle: BattleService, private cd: ChangeDetectorRef) {}
 
-rowData = [
-    { user: 'Uladzimir', hero: 'Tor', enemy: 'Batman', result: 'Win' },
-    { user: 'Uladzimir', hero: 'Iron Man', enemy: 'Superman', result: 'Loose' },
-    { user: 'Uladzimir', hero: 'Capitan America', enemy: 'Flash', result: 'Win' }
-];
-
+  ngOnInit(): void {
+    this.battle.getBattles().then((data) => {
+      const newData = data.docs.map((doc) => {
+        return {
+          ...doc.data(),
+        };
+      });
+      this.dataSource = newData;
+      this.cd.detectChanges();
+    });
+  }
 }

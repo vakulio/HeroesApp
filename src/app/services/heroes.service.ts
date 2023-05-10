@@ -20,9 +20,7 @@ export class HeroesService {
 
   loadHeroes(query: string) {
     return this.http
-      .get<HeroResponse>(
-        `${environment.apiUrl}${environment.apiToken}/search/${query}`
-      )
+      .get<HeroResponse>(`/app/api/${environment.apiToken}/search/${query}`)
       .pipe(
         map((response) => {
           return response.results;
@@ -35,7 +33,7 @@ export class HeroesService {
 
   getHero(query: string) {
     return this.http
-      .get<IHero>(`${environment.apiUrl}${environment.apiToken}/${query}`)
+      .get<IHero>(`/app/api/${environment.apiToken}/${query}`)
       .pipe(
         map((response) => {
           return response;
