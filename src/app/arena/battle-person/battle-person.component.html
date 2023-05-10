@@ -1,7 +1,23 @@
-<div class="flex flex-col items-center mt-3">
-  <img class="flex h-52 text-center" [src]='person.image.url' alt="No Image" crossorigin="anonymous">
-</div>
-
-
-
-<div>{{ person | json}}</div>
+<div *ngIf="person; then thenBlock else elseBlock"></div>
+<ng-template #thenBlock>
+  <div class="flex flex-col w-full items-center mt-3" *ngIf="person">
+    <img class="flex w-4/6 text-center" [src]='person.image.url' alt="No Image" crossorigin="anonymous">
+    <h2 class="text-2xl">{{person.name}}</h2>
+    <div class="flex flex-wrap gap-3 justify-center mt-5"><span
+        class="px-2 rounded-lg mr-2 bg-blue-600">Intelligence:{{person.powerstats.intelligence}}</span>
+      <span class="px-2 rounded-lg mr-2 bg-red-600">Strength:{{person.powerstats.strength}}</span>
+      <span class="px-2 rounded-lg mr-2 bg-gray-600">Speed:{{person.powerstats.speed}}</span>
+      <span class="px-2 rounded-lg mr-2 bg-purple-600">Durability:{{person.powerstats.durability}}</span>
+      <span class="px-2 rounded-lg mr-2 bg-green-600">Power:{{person.powerstats.power}}</span>
+      <span class="px-2 rounded-lg mr-2 bg-yellow-600">Combat:{{person.powerstats.power}}</span>
+    </div>
+  </div>
+</ng-template>
+<ng-template #elseBlock>
+  <div class="flex flex-col items-center h-full justify-center">
+    <h3 class="text-4xl mb-8">Please choose {{status}} </h3>
+    <div><a class="text-2xl p-4 rounded-2xl hover:text-purple-400 bg-purple-600 hover:bg-purple-500"
+        routerLink="/all-heroes" routerLinkActive="text-purple-400">Characters</a>
+    </div>
+  </div>
+</ng-template>

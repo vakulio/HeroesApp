@@ -1,9 +1,9 @@
 <div
   class="flex mt-8 justify-center items-center h-2/3 bg-[url('https://firebasestorage.googleapis.com/v0/b/heroes-app-26908.appspot.com/o/bg-arena.webp?alt=media&token=a59457d3-29c8-4611-a076-53b2a28162fd')] bg-center bg-no-repeat">
-  <!-- <div class="w-1/4 h-full bg-blue-500"> {{battle.battleHero | json}}</div> -->
-  <app-battle-person class="w-1/4 h-full bg-blue-500" [person]='mok'></app-battle-person>
+  <app-battle-person class="w-1/4 h-full bg-blue-500" [person]='battle.battleHero' [status]="'hero'"></app-battle-person>
   <div class="relative w-1/3 h-96">
-    <button *ngIf="!battleStarted" (click)="startBattle()"
+    <button *ngIf="!battleStarted && battle.battleHero && battle.battleEnemy"
+      (click)="fightBetweenPlayers(battle.battleHero, battle.battleEnemy)"
       class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 py-3 px-6 bg-purple-500 animate-pulse text-white rounded-lg shadow-lg hover:bg-purple-600 hover:text-black focus:outline-none focus:ring-2 focus:ring-red-600 focus:ring-opacity-50">Start
       Battle</button>
     <div *ngIf="battleStarted"
@@ -12,5 +12,5 @@
         Fight</h6>
     </div>
   </div>
-  <div class="w-1/4 h-full bg-red-500"></div>
+  <app-battle-person class="w-1/4 h-full bg-red-500" [person]='battle.battleEnemy' [status]="'enemy'"></app-battle-person>
 </div>

@@ -1,8 +1,16 @@
 <div class="flex flex-wrap justify-center mt-5">
-  <div class="justify-normal flex w-1/2 h-full">
+  <div class="justify-normal flex w-2/3 h-full">
     <img [src]='heroService.hero.image.url' class="h-96" alt="No Image" crossorigin="anonymous">
     <div class="mx-28 w-full">
-      <div class="flex justify-between"><h2 class="text-5xl inline-block">{{heroService.hero.name}}</h2><button class="bg-green-600 px-5 rounded-2xl text-white text-xl" (click)="toggleHero(heroService.hero)" [ngClass]="{ 'bg-red-500' : this.heroService.hero === this.battle.battleHero}">Choose</button></div>
+      <div class="flex justify-between">
+        <h2 class="text-5xl inline-block">{{heroService.hero.name}}</h2>
+        <div>
+          <button class="bg-green-600 px-2 mx-3 rounded-2xl text-white text-lg" (click)="toggleHero(heroService.hero)"
+            [ngClass]="{ 'bg-red-500' : this.heroService.hero === this.battle.battleHero}">Choose Hero</button><button
+            class="bg-green-600 px-2 mx-3 rounded-2xl text-white text-lg" (click)="toggleEnemy(heroService.hero)"
+            [ngClass]="{ 'bg-red-500' : this.heroService.hero === this.battle.battleEnemy}">Choose Enemy</button>
+        </div>
+      </div>
       <h6>{{heroService.hero.biography['full-name']}}</h6>
       <h3>Race: {{heroService.hero.appearance['race']}}</h3>
       <h3>Work: {{heroService.hero.work['occupation']}}</h3>

@@ -10,23 +10,24 @@ import { BattleService } from 'src/app/services/battle.service';
   templateUrl: './current-hero.component.html',
   styleUrls: ['./current-hero.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [AddPercentPipe]
+  providers: [AddPercentPipe],
 })
 export class CurrentHeroComponent implements OnInit, OnDestroy {
-
   hero: IHero = {} as IHero;
   constructor(
     public route: ActivatedRoute,
     public heroService: HeroesService,
     private changeDetection: ChangeDetectorRef,
     public battle: BattleService
-    ) {}
+  ) {}
 
   ngOnInit(): void {
-      this.route.params.subscribe((params: Params) => {
-          this.heroService.getHero(params['id']).subscribe().add(() => this.changeDetection.markForCheck)
-
-      })
+    this.route.params.subscribe((params: Params) => {
+      this.heroService
+        .getHero(params['id'])
+        .subscribe()
+        .add(() => this.changeDetection.markForCheck);
+    });
   }
 
   ngOnDestroy(): void {
@@ -34,11 +35,18 @@ export class CurrentHeroComponent implements OnInit, OnDestroy {
   }
 
   toggleHero(hero: IHero): void {
-    if(hero.id === this.battle.battleHero?.id){
-      this.battle.chooseBattleHero(null)
-      return
+    if (hero.id === this.battle.battleHero?.id) {
+      this.battle.chooseBattleHero(null);
+      return;
     }
-    this.battle.chooseBattleHero(hero)
+    this.battle.chooseBattleHero(hero);
   }
 
+  toggleEnemy(hero: IHero): void {
+    if (hero.id === this.battle.battleEnemy?.id) {
+      this.battle.chooseBattleEnemy(null);
+      return;
+    }
+    this.battle.chooseBattleEnemy(hero);
+  }
 }
