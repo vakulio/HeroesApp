@@ -31,18 +31,19 @@ export class AllHeroesComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.heroService.loadHeroes('a').add(() => this.changeDetection.markForCheck)
+    this.heroService.loadHeroes('a').add(() => this.changeDetection.markForCheck())
   }
 
   private search(value: string): void {
     this.addRecentSearch(value);
 
-    this.heroService.loadHeroes(value).add(() => this.changeDetection.markForCheck)
+    this.heroService.loadHeroes(value).add(() => this.changeDetection.markForCheck())
   }
 
   alphabetSearch(value: string) {
     if (!value) return;
     this.search(value);
+    this.changeDetection.markForCheck();
   }
 
   searchByEnter(event: KeyboardEvent) {
@@ -55,6 +56,7 @@ export class AllHeroesComponent implements OnInit {
   inputOldSearch(value: string) {
     this.form.get('searchInput')?.setValue(value);
     this.search(this.form.value.searchInput);
+    this.changeDetection.markForCheck();
   }
 
   addRecentSearch(str: string): void {

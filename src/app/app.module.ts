@@ -19,6 +19,7 @@ import { MatCardModule } from '@angular/material/card';
 import { BattlePersonComponent } from './arena/battle-person/battle-person.component';
 import { MatTableModule } from '@angular/material/table';
 import { FbTimestampPipe } from './pipes/fb-timestamp.pipe';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { FbTimestampPipe } from './pipes/fb-timestamp.pipe';
     BrowserModule,
     MatTableModule,
     HeroesModule,
+    SharedModule,
     AppRoutingModule,
     UserModule,
     AngularFireModule.initializeApp(environment.firebase),
