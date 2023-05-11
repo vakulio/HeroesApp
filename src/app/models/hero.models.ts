@@ -5,6 +5,7 @@ export interface HeroResponse {
 }
 
 export interface IHero {
+  response?: string,
   id: string
   name: string
   powerstats: IPowerstats

@@ -1,24 +1,22 @@
 <div class="mx-auto my-0 w-3/5 h-screen pt-5">
-  <div class="py-4 text-center">
-    <div class="relative inline-block w-3/6">
-      <input class="rounded-lg w-full h-8 text-cyan-800 font-bold font-sans pl-2" type="text" maxlength="25"><img
-        class="w-6 absolute right-2.5 top-1" src="../../../assets/icons/search.png" alt="">
+  <div class="py-4 flex justify-between">
+    <mat-form-field [formGroup]="selectedForm" class="w-40" appearance="fill">
+      <mat-label>Choose letter</mat-label>
+      <mat-select formControlName="selected" (valueChange)="alphabetSearch($event)">
+        <mat-option>None</mat-option>
+        <mat-option *ngFor="let letter of ALPHABET.split('')" [value]="letter">{{letter | uppercase}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <div class="relative inline-block w-5/6">
+      <form [formGroup]="form">
+        <div><input formControlName="searchInput" (keyup)="searchByEnter($event)" class="rounded-lg w-full h-8 text-cyan-800 font-bold font-sans pl-2" type="text" maxlength="25"><img
+          class="w-6 absolute right-2.5 top-1" src="../../../assets/icons/search.png" alt=""></div>
+        <div class="mt-3"><span (click)="inputOldSearch(searchItem)" class="px-2 rounded-lg mr-2 bg-purple-500 cursor-pointer" *ngFor="let searchItem of recentSearches">{{ searchItem }}</span></div>
+      </form>
+
     </div>
   </div>
-  <ul class="flex flex-wrap gap-1">
-    <li class="h-56 w-44 pt-2 relative" (mouseover)="showInfo = true" (mouseleave)="showInfo = false">
-      <div
-        class="before:absolute before:top-0 before:left-0 before:right-0 before:bottom-0 before:bg-[rgba(0,0,0,0.5)] before:opacity-0 before:transition-opacity hover:before:opacity-100">
-        <div class="flex flex-col items-center">
-          <img class="h-52 w-40" [src]=[mock.image.url] alt="">
-        </div>
-        <div class="absolute top-1/2 left-1/2 text-center transform -translate-x-1/2 -translate-y-1/2" [hidden]="!showInfo">
-          <p class="">{{ mock.name }}</p>
-          <a routerLink="/hero/{{mock.id}}">
-            See more
-          </a>
-        </div>
-      </div>
-    </li>
+  <ul>
+    <app-hero class="flex flex-wrap gap-1" [heroes]="heroService.heroes"></app-hero>
   </ul>
 </div>

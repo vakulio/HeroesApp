@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth'
-import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore'
+import { AngularFirestore, AngularFirestoreCollection, QuerySnapshot } from '@angular/fire/compat/firestore'
 import { IUser, IUserDB } from '../models/user.models';
-import { Observable, of } from 'rxjs';
+import { Observable, combineLatest, of } from 'rxjs';
 import { delay, map, filter, switchMap } from 'rxjs/operators';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
+import {documentId} from 'firebase/firestore'
 
 @Injectable({
   providedIn: 'root'
@@ -39,6 +40,8 @@ export class AuthService {
       }
       )
     }
+
+
 
   public async createUser(userData: IUser) {
     if(!userData.password) {
@@ -77,4 +80,22 @@ export class AuthService {
     }
 
   }
+
+  public getUserData(){
+    return this.auth.user.pipe(
+      switchMap(user => {
+        if(!user) {
+          return of([])
+        }
+        const query = this.userCollections.ref.where(
+          documentId(), '==', user.uid
+        )
+        return query.get()
+
+      }),
+      map(snapshot => (snapshot as QuerySnapshot<IUserDB>).docs
+      )
+    )
+  }
+
 }

@@ -1,4 +1,11 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  OnInit,
+} from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { HeroesService } from 'src/app/services/heroes.service';
 
 @Component({
   selector: 'app-all-heroes',
@@ -6,62 +13,60 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   styleUrls: ['./all-heroes.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AllHeroesComponent {
-  showInfo = false;
+export class AllHeroesComponent implements OnInit {
+  selectedForm: FormGroup = this.formBuilder.group({
+    selected: ['', [Validators.required]],
+  });
+  form: FormGroup = this.formBuilder.group({
+    searchInput: ['', [Validators.required]],
+  });
+  ALPHABET = 'abcdefghijklmnopqrstuvxyz';
+  recentSearches: string[] =
+    sessionStorage.getItem('searches')?.split(',') || [];
 
-  mock =  {
-    "id": "100",
-    "name": "Black Flash",
-    "powerstats": {
-      "intelligence": "44",
-      "strength": "10",
-      "speed": "100",
-      "durability": "80",
-      "power": "100",
-      "combat": "30"
-    },
-    "biography": {
-      "full-name": "",
-      "alter-egos": "No alter egos found.",
-      "aliases": [
-        "Barry Allen",
-        "Flashback",
-        "Slow Lightning",
-        "Black Racer",
-        "Death Flash",
-        "God of Death"
-      ],
-      "place-of-birth": "-",
-      "first-appearance": "Flash Vol 2 #138",
-      "publisher": "DC Comics",
-      "alignment": "neutral"
-    },
-    "appearance": {
-      "gender": "Male",
-      "race": "God \/ Eternal",
-      "height": [
-        "-",
-        "0 cm"
-      ],
-      "weight": [
-        "- lb",
-        "0 kg"
-      ],
-      "eye-color": "-",
-      "hair-color": "-"
-    },
-    "work": {
-      "occupation": "-",
-      "base": "-"
-    },
-    "connections": {
-      "group-affiliation": "-",
-      "relatives": "-"
-    },
-    "image": {
-      "url": "https:\/\/www.superherodb.com\/pictures2\/portraits\/10\/100\/10831.jpg"
-    }
+  constructor(
+    public heroService: HeroesService,
+    private formBuilder: FormBuilder,
+    private changeDetection: ChangeDetectorRef
+  ) {}
+
+  ngOnInit(): void {
+    this.heroService.loadHeroes('a').add(() => this.changeDetection.markForCheck)
   }
 
+  private search(value: string): void {
+    this.addRecentSearch(value);
 
+    this.heroService.loadHeroes(value).add(() => this.changeDetection.markForCheck)
+  }
+
+  alphabetSearch(value: string) {
+    if (!value) return;
+    this.search(value);
+  }
+
+  searchByEnter(event: KeyboardEvent) {
+    if (event.code !== 'Enter') {
+      return;
+    }
+    this.search(this.form.value.searchInput);
+  }
+
+  inputOldSearch(value: string) {
+    this.form.get('searchInput')?.setValue(value);
+    this.search(this.form.value.searchInput);
+  }
+
+  addRecentSearch(str: string): void {
+    if (this.recentSearches.includes(str)) {
+      return;
+    }
+
+    this.recentSearches.unshift(str);
+
+    if (this.recentSearches.length === 6) this.recentSearches.pop();
+
+    sessionStorage.setItem('searches', this.recentSearches.join(','));
+    this.changeDetection.markForCheck();
+  }
 }

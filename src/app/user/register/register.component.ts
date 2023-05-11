@@ -43,7 +43,7 @@ export class RegisterComponent {
     email: this.email,
     password: this.password,
     confirmPassword: this.confirmPassword,
-  }, [RegisterValidators.matchPasswordValidator, RegisterValidators.allowedDomainValidator, RegisterValidators.maxDotsBeforeAtValidator, RegisterValidators.notContainsEmailOrUsernameValidator, RegisterValidators.maxNineSymbolsAfterAtValidator]);
+  }, [RegisterValidators.matchPasswordValidator, RegisterValidators.allowedDomainValidator, RegisterValidators.maxDotsBeforeAtValidator, RegisterValidators.maxNineSymbolsAfterAtValidator]);
 
   async register() {
     this.showAlert = true

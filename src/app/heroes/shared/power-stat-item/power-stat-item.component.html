@@ -1,0 +1,7 @@
+<li>{{ titleName | uppercase }}: <span class="text-lg" [style.color]='color' [ngClass]="color">{{powerStat}} <div
+  class="progress">
+  <div class="progress-bg">
+    <div class="progress-bar" [style.background]='color' [style.width]="powerStat | addPercent"></div>
+  </div>
+</div></span>
+</li>
