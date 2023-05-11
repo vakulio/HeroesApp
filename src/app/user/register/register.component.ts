@@ -43,6 +43,9 @@ export class RegisterComponent {
     [
       RegisterValidators.matchPasswordValidator,
       RegisterValidators.allowedDomainValidator,
+      // RegisterValidators.maxDotsBeforeAtValidator,
+      // RegisterValidators.maxNineSymbolsAfterAtValidator,
+      // RegisterValidators.notContainsEmailOrUsernameValidator,
     ]
   );
 

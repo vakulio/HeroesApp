@@ -59,7 +59,6 @@ export class AuthService {
       name: userData.name,
       email: userData.email,
       powerUps: [],
-      heroes: [],
       battleStory: [],
     });
 

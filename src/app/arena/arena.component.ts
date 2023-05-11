@@ -12,12 +12,13 @@ import firebase from 'firebase/compat/app';
 })
 export class ArenaComponent {
   user: firebase.User | null = null;
+  battleStarted = false;
+
   constructor(public battle: BattleService, private auth: AngularFireAuth) {
     auth.user.subscribe((user) => {
       this.user = user;
     });
   }
-  battleStarted = false;
 
   fightBetweenPlayers(hero: IHero, enemy: IHero) {
     this.battleStarted = true;

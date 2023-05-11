@@ -7,6 +7,5 @@ export interface IUser {
 
 export interface IUserDB extends IUser {
   powerUps: [];
-  heroes: [];
   battleStory: [];
 }
