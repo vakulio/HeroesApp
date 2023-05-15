@@ -11,6 +11,11 @@
       <span class="px-2 rounded-lg mr-2 bg-green-600">Power:{{person.powerstats.power}}</span>
       <span class="px-2 rounded-lg mr-2 bg-yellow-600">Combat:{{person.powerstats.power}}</span>
     </div>
+    <div class="flex flex-col w-full items-center mt-3" *ngIf="status === 'hero' && powerup">
+      {{powerDescription}}
+      <img class="w-20 h-20" [src]="powerup.imageUrl" alt="">
+      <button class="bg-red-600 text-white rounded-lg px-4" (click)="deletePower">Delete PowerUp</button>
+    </div>
   </div>
 </ng-template>
 <ng-template #elseBlock>

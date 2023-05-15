@@ -11,7 +11,7 @@ import { IBattle } from '../models/battle.models';
 import { DatePipe } from '@angular/common';
 import { IUserPowerups } from '../models/powerup.models';
 import { PowersService } from '../services/powers.service';
-import { POWERUPS } from '../constants/powerUps';
+import { POWERUPS } from '../constants/powerups';
 
 @Component({
   selector: 'app-account',

@@ -8,7 +8,7 @@ import {
 import { IPowerup, IUserPowerups } from '../models/powerup.models';
 import { PowersService } from '../services/powers.service';
 import { ModalService } from '../services/modal.service';
-import { POWERUPS } from '../constants/powerUps';
+import { POWERUPS } from '../constants/powerups';
 
 @Component({
   selector: 'app-power-ups',

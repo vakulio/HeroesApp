@@ -52,15 +52,16 @@ export class ScoreComponent implements OnInit {
   getBattles() {
     this.route.queryParams.subscribe((params) => {
       this.scoreOrder = params['sort'];
-    });
-    this.battle.getBattles(this.scoreOrder).then((data) => {
-      const newData = data.docs.map((doc) => {
-        return {
-          ...doc.data(),
-        };
+      this.battle.getBattles(this.scoreOrder).then((data) => {
+        const newData = data.docs.map((doc) => {
+          return {
+            ...doc.data(),
+          };
+        });
+        this.dataSource = newData;
+        this.cd.detectChanges();
       });
-      this.dataSource = newData;
-      this.cd.detectChanges();
     });
+
   }
 }

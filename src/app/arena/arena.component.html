@@ -1,7 +1,9 @@
 <div
-  class="flex mt-8 justify-center items-center h-2/3 bg-[url('https://firebasestorage.googleapis.com/v0/b/heroes-app-26908.appspot.com/o/bg-arena.webp?alt=media&token=a59457d3-29c8-4611-a076-53b2a28162fd')] bg-center bg-no-repeat">
-  <app-battle-person class="w-1/4 h-full bg-blue-500" [person]='battle.battleHero' [status]="'hero'"></app-battle-person>
+  class="flex mt-8 justify-center items-center h-3/4 bg-[url('https://firebasestorage.googleapis.com/v0/b/heroes-app-26908.appspot.com/o/bg-arena.webp?alt=media&token=a59457d3-29c8-4611-a076-53b2a28162fd')] bg-center bg-no-repeat">
+  <app-battle-person class="w-1/4 h-full bg-blue-500" [person]='battle.battleHero' [powerup]="selectedPower" [deletePower]="deletePower()"
+    [powerDescription]="selectedPowerDescription" [status]="'hero'"></app-battle-person>
   <div class="relative w-1/3 h-96">
+
     <button *ngIf="!battleStarted && battle.battleHero && battle.battleEnemy"
       (click)="fightBetweenPlayers(battle.battleHero, battle.battleEnemy)"
       class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 py-3 px-6 bg-purple-500 animate-pulse text-white rounded-lg shadow-lg hover:bg-purple-600 hover:text-black focus:outline-none focus:ring-2 focus:ring-red-600 focus:ring-opacity-50">Start
@@ -14,6 +16,14 @@
   </div>
   <app-battle-person class="w-1/4 h-full bg-red-500" [person]='battle.battleEnemy' [status]="'enemy'"></app-battle-person>
 </div>
+<ng-container *ngIf="userPower.powerUps && !battleStarted && battle.battleHero && battle.battleEnemy">
+  <div class="flex gap-3 mt-5 justify-center">
+    <div [matBadge]="userPower.powerUps[item.id]" class="inline-block cursor-pointer"
+      *ngFor="let item of userpowerupslist" (click)="selectPower(item)">
+      <img class="w-24 h-24" [src]="item.imageUrl" alt="">
+    </div>
+  </div>
+</ng-container>
 
 <app-modal modalId="winner">
   <h2 class="text-yellow-500 text-center text-5xl">Winner</h2>
