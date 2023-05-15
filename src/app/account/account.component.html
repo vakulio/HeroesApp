@@ -4,8 +4,18 @@
       <mat-card-title class="text-5xl">User: {{userData?.name}}</mat-card-title>
       <mat-card-subtitle class="text-3xl">Email: {{userData?.email}}</mat-card-subtitle>
       <mat-card-subtitle class="text-3xl">Battles: {{userBattles.length}}</mat-card-subtitle>
+      <mat-card-subtitle class="flex justify-center text-3xl">
+        <p class="pr-5">Your money: {{ userPower.money }} <span
+            class="w-5 h-5 bg-yellow-500 rounded-full inline-block"></span></p>
+      </mat-card-subtitle>
+      <mat-card-subtitle class="text-3xl">Power Ups:</mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
+      <div class="flex gap-3 mt-5">
+        <div [matBadge]="userPower.powerUps[item.id]" class="inline-block" *ngFor="let item of userpowerupslist">
+          <img class="w-20 h-20" [src]="item.imageUrl" alt="">
+        </div>
+      </div>
       <div class="flex justify-center">
         <div class="w-full pt-6">
           <table mat-table [dataSource]="userBattles">

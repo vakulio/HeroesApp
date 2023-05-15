@@ -7,9 +7,9 @@ import {
 } from '@angular/fire/compat/firestore';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { switchMap, map } from 'rxjs/operators';
-import { of, BehaviorSubject, combineLatest } from 'rxjs'
+import { of, combineLatest } from 'rxjs';
 import { IBattle } from '../models/battle.models';
-import { IUserDB } from '../models/user.models';
+import { IUser } from '../models/user.models';
 import { IHero } from '../models/hero.models';
 
 @Injectable({
@@ -17,7 +17,7 @@ import { IHero } from '../models/hero.models';
 })
 export class BattleService {
   public battleCollection: AngularFirestoreCollection<IBattle>;
-  public userCollection: AngularFirestoreCollection<IUserDB>;
+  public userCollection: AngularFirestoreCollection<IUser>;
   battleHero: IHero | null = null;
   battleEnemy: IHero | null = null;
   battles: IBattle[] = [];

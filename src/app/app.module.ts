@@ -21,6 +21,7 @@ import { MatTableModule } from '@angular/material/table';
 import { FbTimestampPipe } from './pipes/fb-timestamp.pipe';
 import { SharedModule } from './shared/shared.module';
 import { PowerUpsComponent } from './power-ups/power-ups.component';
+import { MatBadgeModule } from '@angular/material/badge';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { PowerUpsComponent } from './power-ups/power-ups.component';
     AngularFirestoreModule,
     CdkAccordionModule,
     MatCardModule,
+    MatBadgeModule,
   ],
   exports: [MatCardModule],
   providers: [],
