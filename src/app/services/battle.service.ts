@@ -54,9 +54,9 @@ export class BattleService {
     );
   }
 
-  async getBattles() {
+  async getBattles(sort: string) {
     let query = this.battleCollection.ref
-      .orderBy('timestamp', 'desc')
+      .orderBy('timestamp', sort === 'desc' ? 'desc' : 'asc')
       .limit(50);
 
     const snapshot = await query.get();

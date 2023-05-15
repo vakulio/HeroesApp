@@ -1,5 +1,11 @@
 <div class="flex justify-center">
   <div class="w-3/4 pt-6">
+    <div class="flex justify-end">
+      <select (change)="sort($event)" class="text-black px-8 text-xl outline-none appearance-none rounded-md">
+        <option value="asc" [selected]="scoreOrder === 'asc'">Recent score</option>
+        <option value="desc" [selected]="scoreOrder === 'desc'">Oldest score</option>
+      </select>
+    </div>
     <table mat-table [dataSource]="dataSource">
 
       <ng-container matColumnDef="userName">

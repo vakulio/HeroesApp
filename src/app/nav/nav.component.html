@@ -15,7 +15,8 @@
             <a class="px-2 hover:text-purple-400" routerLink="/arena" routerLinkActive="text-purple-400">Arena</a>
           </li>
           <li>
-            <a class="px-2 hover:text-purple-400" routerLink="/score" routerLinkActive="text-purple-400">Score</a>
+            <a class="px-2 hover:text-purple-400" routerLink="/score" routerLinkActive="text-purple-400"
+              [queryParams]="{ sort : 'asc'}">Score</a>
           </li>
         </ng-template>
       </ul>
