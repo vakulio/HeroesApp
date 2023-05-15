@@ -6,7 +6,7 @@ import { TabComponent } from './tab/tab.component';
 import { AlertComponent } from './alert/alert.component';
 import { InputComponent } from './input/input.component';
 import { ReactiveFormsModule } from '@angular/forms';
-
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -16,16 +16,13 @@ import { ReactiveFormsModule } from '@angular/forms';
     AlertComponent,
     InputComponent,
   ],
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-  ],
+  imports: [CommonModule, ReactiveFormsModule, MatIconModule],
   exports: [
     ModalComponent,
     TabsContainerComponent,
     TabComponent,
     InputComponent,
-    AlertComponent
+    AlertComponent,
   ],
 })
-export class SharedModule { }
+export class SharedModule {}

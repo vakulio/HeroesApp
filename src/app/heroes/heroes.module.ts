@@ -12,6 +12,7 @@ import { AddPercentPipe } from './pipes/add-percent.pipe';
 import { PowerStatItemComponent } from './shared/power-stat-item/power-stat-item.component';
 import {MatSelectModule} from '@angular/material/select'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ReplaceUrlPipe } from '../pipes/replace-url.pipe';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     CurrentHeroComponent,
     HeroComponent,
     AddPercentPipe,
-    PowerStatItemComponent
+    PowerStatItemComponent,
+    ReplaceUrlPipe,
   ],
   imports: [
     CommonModule,
@@ -28,9 +30,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ReactiveFormsModule,
     CdkAccordionModule,
     MatSelectModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
   ],
-  exports: [PercentPipe],
-  providers: [PercentPipe]
+  exports: [PercentPipe, ReplaceUrlPipe],
+  providers: [PercentPipe],
 })
-export class HeroesModule { }
+export class HeroesModule {}

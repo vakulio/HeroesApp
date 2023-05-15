@@ -6,16 +6,20 @@ import { NavComponent } from './nav/nav.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { HomeComponent } from './home/home.component';
 import { UserModule } from './user/user.module';
-import { AngularFireModule } from '@angular/fire/compat'
+import { AngularFireModule } from '@angular/fire/compat';
 import { environment } from 'src/environments/environment';
-import { AngularFireAuthModule } from '@angular/fire/compat/auth'
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { ArenaComponent } from './arena/arena.component';
 import { ScoreComponent } from './score/score.component';
 import { HeroesModule } from './heroes/heroes.module';
 import { AccountComponent } from './account/account.component';
-import { AgGridModule } from 'ag-grid-angular';
-import {CdkAccordionModule} from '@angular/cdk/accordion'
+import { CdkAccordionModule } from '@angular/cdk/accordion';
+import { MatCardModule } from '@angular/material/card';
+import { BattlePersonComponent } from './arena/battle-person/battle-person.component';
+import { MatTableModule } from '@angular/material/table';
+import { FbTimestampPipe } from './pipes/fb-timestamp.pipe';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -26,19 +30,24 @@ import {CdkAccordionModule} from '@angular/cdk/accordion'
     ArenaComponent,
     ScoreComponent,
     AccountComponent,
+    BattlePersonComponent,
+    FbTimestampPipe,
   ],
   imports: [
     BrowserModule,
+    MatTableModule,
     HeroesModule,
+    SharedModule,
     AppRoutingModule,
     UserModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     AngularFirestoreModule,
-    AgGridModule,
-    CdkAccordionModule
+    CdkAccordionModule,
+    MatCardModule,
   ],
+  exports: [MatCardModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
