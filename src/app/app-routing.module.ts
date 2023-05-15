@@ -5,6 +5,7 @@ import { ArenaComponent } from './arena/arena.component';
 import { ScoreComponent } from './score/score.component';
 import { AccountComponent } from './account/account.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { PowerUpsComponent } from './power-ups/power-ups.component';
 
 const routes: Routes = [
   {
@@ -16,26 +17,33 @@ const routes: Routes = [
     component: ArenaComponent,
     data: {
       authOnly: true,
-    }
+    },
   },
   {
     path: 'score',
     component: ScoreComponent,
     data: {
       authOnly: true,
-    }
+    },
   },
   {
-    path: "account",
+    path: 'account',
     component: AccountComponent,
     data: {
       authOnly: true,
-    }
+    },
   },
   {
-    path: "**",
-    component: NotFoundComponent
-  }
+    path: 'shop',
+    component: PowerUpsComponent,
+    data: {
+      authOnly: true,
+    },
+  },
+  {
+    path: '**',
+    component: NotFoundComponent,
+  },
 ];
 
 @NgModule({

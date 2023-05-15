@@ -1,0 +1,16 @@
+<div class="bg-secondary my-5 w-2/3 mx-auto p-5 flex flex-wrap gap-2 justify-between">
+  <div class="w-96 py-4 border-2 rounded-lg" *ngFor="let item of POWERUPS">
+    <h6 class="text-center text-3xl ">{{ item.title }}</h6>
+    <div class="flex justify-center min-w-min h-72">
+      <img [src]="item.imageUrl" [alt]="item.title">
+    </div>
+    <div>
+      <p class="text-center">You have: <span class="bg-blue-800 p-1 rounded-md">0</span></p>
+      <p class="text-justify p-4 h-32">{{item.description}}</p>
+      <p class="text-center">Cost: <span class="text-yellow-600">{{ item.price }}</span> gold</p>
+    </div>
+    <div class="flex justify-center py-4">
+      <button class="bg-purple-500 p-3 rounded-lg hover:bg-purple-400">Buy one</button>
+    </div>
+  </div>
+</div>
