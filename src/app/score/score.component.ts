@@ -8,7 +8,6 @@ import { BattleService } from '../services/battle.service';
 import { IBattle } from '../models/battle.models';
 import { DatePipe } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
-import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 
 @Component({
   selector: 'app-score',
