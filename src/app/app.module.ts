@@ -20,6 +20,8 @@ import { BattlePersonComponent } from './arena/battle-person/battle-person.compo
 import { MatTableModule } from '@angular/material/table';
 import { FbTimestampPipe } from './pipes/fb-timestamp.pipe';
 import { SharedModule } from './shared/shared.module';
+import { PowerUpsComponent } from './power-ups/power-ups.component';
+import { MatBadgeModule } from '@angular/material/badge';
 
 @NgModule({
   declarations: [
@@ -32,6 +34,7 @@ import { SharedModule } from './shared/shared.module';
     AccountComponent,
     BattlePersonComponent,
     FbTimestampPipe,
+    PowerUpsComponent,
   ],
   imports: [
     BrowserModule,
@@ -45,6 +48,7 @@ import { SharedModule } from './shared/shared.module';
     AngularFirestoreModule,
     CdkAccordionModule,
     MatCardModule,
+    MatBadgeModule,
   ],
   exports: [MatCardModule],
   providers: [],

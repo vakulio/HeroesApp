@@ -7,17 +7,18 @@ import {
 } from '@angular/fire/compat/firestore';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { switchMap, map } from 'rxjs/operators';
-import { of, BehaviorSubject, combineLatest } from 'rxjs'
+import { of, combineLatest } from 'rxjs';
 import { IBattle } from '../models/battle.models';
-import { IUserDB } from '../models/user.models';
+import { IUser } from '../models/user.models';
 import { IHero } from '../models/hero.models';
+import { IUserPowerups } from '../models/powerup.models';
 
 @Injectable({
   providedIn: 'root',
 })
 export class BattleService {
   public battleCollection: AngularFirestoreCollection<IBattle>;
-  public userCollection: AngularFirestoreCollection<IUserDB>;
+  public userCollection: AngularFirestoreCollection<IUser>;
   battleHero: IHero | null = null;
   battleEnemy: IHero | null = null;
   battles: IBattle[] = [];
@@ -54,24 +55,56 @@ export class BattleService {
     );
   }
 
-  async getBattles() {
+  async getBattles(sort: string) {
     let query = this.battleCollection.ref
-      .orderBy('timestamp', 'desc')
+      .orderBy('timestamp', sort === 'desc' ? 'asc' : 'desc')
       .limit(50);
 
     const snapshot = await query.get();
     return snapshot;
   }
 
-  fight(hero: IHero, enemy: IHero) {
-    const heroPower = this.calculatePower(hero);
+  fight(hero: IHero, enemy: IHero, powerUp?: string) {
+    const heroCopy = { ...hero };
+    let { powerstats } = heroCopy;
+    console.log(powerUp);
+    if (powerUp) {
+      switch (powerUp) {
+        case 'armor':
+          powerstats.combat = (Number(powerstats.combat) + 50).toString();
+          break;
+        case 'shield':
+          powerstats.durability = (
+            Number(powerstats.durability) + 50
+          ).toString();
+          break;
+        case 'mjolnir':
+          powerstats.power = (Number(powerstats.power) + 50).toString();
+          break;
+        case 'cloak':
+          powerstats.intelligence = (
+            Number(powerstats.intelligence) + 50
+          ).toString();
+          break;
+        case 'ring':
+          powerstats.strength = (Number(powerstats.strength) + 50).toString();
+          break;
+        case 'boots':
+          powerstats.speed = (Number(powerstats.speed) + 50).toString();
+          break;
+        default:
+          return heroCopy;
+      }
+    }
+
+    const heroPower = this.calculatePower(heroCopy);
     const enemyPower = this.calculatePower(enemy);
 
     if (
       heroPower > enemyPower ||
       (heroPower == enemyPower && Math.random() < 0.5)
     ) {
-      return hero;
+      return heroCopy;
     } else {
       return enemy;
     }
